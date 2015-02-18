@@ -1,0 +1,173 @@
+<div>
+  <p>
+    Welcome to expenseriser demo web app, in this app, we will show you all the things what you need to create request of expenseriser api 
+  </p>
+  <p>
+    This demo provide sample script of from usage of <a href="https://github.com/typhoeus/typhoeus" target="_blank">Typhoeus gem</a>, you are free to use other gem or 
+    other things to form your http request url as long as you fulfill spesification of our api http request headers and parameters. expenseriser demo 
+    is connected to our expenseriser server.
+  </p>
+
+  <p>
+    Expenseriser app needs your name and token, if you don't have it, sign up on <a href="https://guarded-caverns-1459.herokuapp.com" target="_blank">this link</a> 
+    to register your company name and token
+  </p>
+</div>
+
+<div>
+  <p>
+      <h3>Create expense</h3><br>
+      To create expense you will need to add specific url we provide include headers of name,token and parameters of amount and date<br><br>
+      url       : https://guarded-caverns-1459.herokuapp.com/api/v1/expenses <br>
+      method    : post <br>
+      header    : 
+      &nbsp&nbsp&nbsp <ul>
+                          <li>name</li>
+                          <li>token</li>
+                      </ul>
+      parameter :
+       &nbsp&nbsp&nbsp <ul>
+                          <li>amount (decimal)</li>
+                          <li>date (yyyy-mm-dd)</li>
+                      </ul>
+  </p>
+  <p>
+    <h5>Sample Typhoeus http request script</h5>
+    <div>
+      request = Typhoeus::Request.new( <br>
+      "https://guarded-caverns-1459.herokuapp.com/api/v1/expenses", <br>
+      method: :post, <br>
+      headers: { name: "dan",token: "5efa35011ec60b30976db7256c54a506" }, <br>
+      params: {date: "2015-2-19", amount: "2"} <br>
+    ) <br>
+    <div>
+  </p>
+  <p>
+    <%= button_to "Generate Result", {:controller => :demo, :action => 'generate_create_expense_result'}, :method => :get %>
+  </p>
+  <p id="create_expense_result">
+    <% if @result.to_s.length > 0 %>
+      <%= @result.to_s %>
+    <% else %>
+      <h6>No result yet, press Generate Result again</h6>
+    <% end %>
+  </p>
+</div>
+
+<div>
+  <p>
+      <h3>Get expenses by date</h3><br>
+      To get expenses you will need to add specific url we provide include headers of name,token and parameters of start date and/or end date.
+      you can also add only start date or only end date or none of them. When you put all of parameters, you will get result all expense inside 
+      date range given. If you only put start date parameters, you'll get result of expense from start date until present. If you only put 
+      end date as parameter, you'll get expense from the oldest expense until given date
+      <br><br>
+      url       : https://guarded-caverns-1459.herokuapp.com/api/v1/expenses <br>
+      method    : get <br>
+      header    : 
+      &nbsp&nbsp&nbsp <ul>
+                          <li>name</li>
+                          <li>token</li>
+                      </ul>
+      parameter :
+       &nbsp&nbsp&nbsp <ul>
+                          <li>start_date (yyyy-mm-dd)</li>
+                          <li>end_date (yyyy-mm-dd)</li>
+                      </ul>
+  </p>
+  <p>
+    <h5>Sample Typhoeus http request script</h5>
+    <div>
+      request = Typhoeus::Request.new(
+      "https://guarded-caverns-1459.herokuapp.com/api/v1/expenses",
+      method: :get,
+      headers: { name: "dan",token: "5efa35011ec60b30976db7256c54a506" }, <br>
+      params: {start_date: "2015-2-17", end_date: "2015-2-19"}
+    ) <br>
+    </div>
+    <p>
+      <%= button_to "Generate Result Date Range", {:controller => :demo, :action => 'generate_expense_date_range'}, :method => :get %>
+    </p>
+  </p>
+
+  <p id="range_date_result">
+    <% if @range_date_result.to_s.length > 0 %>
+      <%= @range_date_result.to_s %>
+    <% else %>
+      <h6>No result yet, press Generate Result again</h6>
+    <% end %>
+  </p>
+
+
+  <p>
+      <h5>Sample Typhoeus http request script</h5>
+      <div>
+        request = Typhoeus::Request.new(
+        "https://guarded-caverns-1459.herokuapp.com/api/v1/expenses",
+        method: :get,
+        headers: { name: "dan",token: "5efa35011ec60b30976db7256c54a506" }, <br>
+        params: {start_date: "2015-2-17"}
+      ) <br>
+      </div>
+    <p>
+      <%= button_to "Generate Result Start Date", {:controller => :demo, :action => 'generate_expense_start_date'}, :method => :get %>
+    </p>
+  </p>
+
+  <p id="start_date_result">
+    <% if @start_date_result.to_s.length > 0 %>
+      <%= @start_date_result.to_s %>
+    <% else %>
+      <h6>No result yet, press Generate Result again</h6>
+    <% end %>
+  </p>
+
+
+   <p>
+      <h5>Sample Typhoeus http request script</h5>
+      <div>
+        request = Typhoeus::Request.new(
+        "https://guarded-caverns-1459.herokuapp.com/api/v1/expenses",
+        method: :get,
+        headers: { name: "dan",token: "5efa35011ec60b30976db7256c54a506" }, <br>
+        params: {end_date: "2015-2-19"}
+      ) <br>
+      </div>
+    <p>
+      <%= button_to "Generate Result End Date", {:controller => :demo, :action => 'generate_expense_end_date'}, :method => :get %>
+    </p>
+   </p>
+
+   <p id="end_date_result">
+    <% if @end_date_result.to_s.length > 0 %>
+      <%= @end_date_result.to_s %>
+    <% else %>
+      <h6>No result yet, press Generate Result again</h6>
+    <% end %>
+  </p>
+
+   <p>
+      <h5>Sample Typhoeus http request script</h5>
+      <div>
+        request = Typhoeus::Request.new(
+        "https://guarded-caverns-1459.herokuapp.com/api/v1/expenses",
+        method: :get,
+        headers: { name: "dan",token: "5efa35011ec60b30976db7256c54a506" } <br>
+      ) <br>
+      </div>
+    <p>
+      <%= button_to "Generate Result No Date", {:controller => :demo, :action => 'generate_expense_no_date'}, :method => :get %>
+    </p>
+  </p>
+
+  <p id="no_date_result">
+    <% if @no_date_result.to_s.length > 0 %>
+      <%= @no_date_result.to_s %>
+    <% else %>
+      <h6>No result yet, press Generate Result again</h6>
+    <% end %>
+  </p>
+  
+</div>
+
+
