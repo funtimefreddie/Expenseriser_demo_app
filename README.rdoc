@@ -1,19 +1,19 @@
 == README
 
 To run this app on your localhost, you can clone it to your local mac.
-Don't forget to to bundle install to make sure all gem are available
+Don't forget to to bundle install to make sure all gem available
 
 This app using Typhoeus gem to generate http request, you're free to use
 any kind of method you like to generate http request 
 
-This app doesn't use database, but if there's an error that show database error
-You can do rake db:create on console inside app directory. Make sure you are connect to internet cause
+This app doesn't use database, make sure you are connect to internet cause
 this app will call api request to expenseriser server 
-  rake db:create
+  
 
 ===API
 
 ====Expense
 
-To learn on how to create request, refer to
+To learn on how to create request on expense object, refer to
   app/controllers/expense_controllers.rb
+
