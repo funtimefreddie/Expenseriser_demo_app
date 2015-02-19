@@ -2,9 +2,8 @@ class ExpenseController < ApplicationController
   def initialize
     # name and token add directly here just for demo purposes
     # you need to hide your name & token when you're implement it in your app
-    @name = "dan"
-    @token = "5efa35011ec60b30976db7256c54a506"
-
+    @name = "Freddie"
+    @token = "c4eea863bac1c9e3c0d953db3320d2bb"
   end
 
   def run_request request
