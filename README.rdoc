@@ -7,12 +7,13 @@ This app using Typhoeus gem to generate http request, you're free to use
 any kind of method you like to generate http request 
 
 This app doesn't use database, but if there's an error that show database error
-You can do rake db:create on console inside app directory
+You can do rake db:create on console inside app directory. Make sure you are connect to internet cause
+this app will call api request to expenseriser server 
   rake db:create
 
-***API
+===API
 
-**Expense
+====Expense
 
 To learn on how to create request, refer to
   app/controllers/expense_controllers.rb
