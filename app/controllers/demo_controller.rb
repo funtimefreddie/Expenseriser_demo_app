@@ -9,12 +9,7 @@ class DemoController < ApplicationController
   end
 
   def index
-    # @result
-    # @range_date_result
-    # @start_date_result
-    # @end_date_result
-    # @no_date_result
-    # @result = @expense_controller.get_expenses
+    
   end
 
   def generate_create_expense_result
