@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-   get 'demo/create_expense_result' => 'demo#generate_create_expense_result'
+  get 'demo/create_expense_result' => 'demo#generate_create_expense_result'
+  get 'demo/get_expenses_result' => 'demo#generate_get_all_expenses'
   get 'demo/expense_date_range' => 'demo#generate_expense_date_range'
   get 'demo/expense_start_date' => 'demo#generate_expense_start_date'
   get 'demo/expense_end_date' => 'demo#generate_expense_end_date'

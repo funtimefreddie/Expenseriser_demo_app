@@ -56,6 +56,41 @@
 
 <div>
   <p>
+      <h3>Get all expenses</h3><br>
+      To get all expenses you will need to add specific url we provide include headers of name,token and parameters of amount and date<br><br>
+      url       : https://guarded-caverns-1459.herokuapp.com/api/v1/expenses <br>
+      method    : post <br>
+      header    : 
+      &nbsp&nbsp&nbsp <ul>
+                          <li>name</li>
+                          <li>token</li>
+                      </ul>
+  </p>
+  <p>
+    <h5>Sample Typhoeus http request script</h5>
+    <div>
+      request = Typhoeus::Request.new( <br>
+      "https://guarded-caverns-1459.herokuapp.com/api/v1/expenses", <br>
+      method: :get, <br>
+      headers: { name: "dan",token: "5efa35011ec60b30976db7256c54a506" }, <br>
+    ) <br>
+    <div>
+  </p>
+  <p>
+    <%= button_to "Generate all expenses result", {:controller => :demo, :action => 'generate_get_all_expenses'}, :method => :get %>
+  </p>
+  <p id="get_expenses_result">
+    <% if @get_expenses_result.to_s.length > 0 %>
+      <%= @get_expenses_result.to_s %>
+    <% else %>
+      <h6>No result yet, press Generate Result again</h6>
+    <% end %>
+  </p>
+</div>
+
+
+<div>
+  <p>
       <h3>Get expenses by date</h3><br>
       To get expenses you will need to add specific url we provide include headers of name,token and parameters of start date and/or end date.
       you can also add only start date or only end date or none of them. When you put all of parameters, you will get result all expense inside 

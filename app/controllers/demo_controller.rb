@@ -1,11 +1,6 @@
 class DemoController < ApplicationController
   def initialize
       @expense_controller = ExpenseController.new
-      @result = ""
-      @range_date_result = ""
-      @start_date_result = ""
-      @end_date_result = ""
-      @no_date_result = ""
   end
 
   def index
@@ -14,6 +9,11 @@ class DemoController < ApplicationController
 
   def generate_create_expense_result
     @result = @expense_controller.create_expense
+    render action: "index"
+  end
+
+  def generate_get_all_expenses
+    @get_expenses_result = @expense_controller.get_all_expenses
     render action: "index"
   end
 
