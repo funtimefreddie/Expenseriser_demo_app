@@ -13,11 +13,13 @@ class Expense < ActiveRecord::Base
       type_name = t.name
       type_total = Expense.type_daily_total(date, t)
 
+      # byebug
+
       request = Typhoeus::Request.new(
         "https://guarded-caverns-1459.herokuapp.com/api/v1/expenses", 
         method: :post, 
         headers: { name: name,token: token },
-        params: {date: date, amount: type_total}
+        params: {date: date, amount: type_total, category: type_name}
       )
     
       run_request request
