@@ -11,27 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219064520) do
+ActiveRecord::Schema.define(version: 20150320144736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "ex_types", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "expenses", force: :cascade do |t|
-    t.string   "date"
     t.decimal  "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "ex_type_id"
-  end
-
-  create_table "types", force: :cascade do |t|
-    t.string   "name"
+    t.string   "date"
+    t.string   "cat"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

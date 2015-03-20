@@ -3,29 +3,44 @@ class Expense < ActiveRecord::Base
   belongs_to :type
 
   # action to send day's expenses to expenseriser
-  def self.archive date
+  def self.submit amount, category, date    
 
-    name = "Freddie"
-    token = "c4eea863bac1c9e3c0d953db3320d2bb"
+    # call expenseriser name and token
+    name = ENV["exp_name"]
+    token = ENV["exp_token"]
 
-    ExType.all.each do |t|
-
-      type_name = t.name
-      type_total = Expense.type_daily_total(date, t)
-
-      # byebug
-
-      request = Typhoeus::Request.new(
-        "https://guarded-caverns-1459.herokuapp.com/api/v1/expenses", 
-        method: :post, 
-        headers: { name: name,token: token },
-        params: {date: date, amount: type_total, category: type_name}
-      )
+    byebug
     
-      run_request request
+    # build request
+    request = Typhoeus::Request.new(
+      "https://guarded-caverns-1459.herokuapp.com/api/v1/expenses", 
+      method: :post, 
+      headers: { name: name,token: token },
+      params: {date: date, amount: amount, category: category}
+    )
+  
+    # send request
+    return run_request request
 
-    end
+  end
 
+  
+
+  # action to retrieve expenses for given data range
+  def self.retrieve start_date, end_date
+
+    # call expenseriser name and token
+    name = ENV["exp_name"]
+    token = ENV["exp_token"]
+
+    request = Typhoeus::Request.new(
+      "https://guarded-caverns-1459.herokuapp.com/api/v1/expenses",
+      method: :get,
+      headers: { name: name, token: token },
+      params: {start_date: start_date, end_date: end_date}
+    )
+      
+    return run_request(request)
   end
 
   # action to calculate total expenses on given date
@@ -37,7 +52,7 @@ class Expense < ActiveRecord::Base
   def self.run_request request
     request.run
     response = request.response
-    data = response.response_body
+    @data = response.response_body
   end
   
 end

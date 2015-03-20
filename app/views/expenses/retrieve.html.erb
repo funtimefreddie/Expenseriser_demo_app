@@ -1,0 +1,9 @@
+  <%= form_tag (expenseriser_path)  do %>
+
+      <%= label_tag :start_date %><br>    
+      <%= text_field_tag :start_date%><br>
+      <%= label_tag :end_date %><br>    
+      <%= text_field_tag :end_date%><br>     
+      <%= submit_tag "Retrieve details" %>
+   
+  <% end %>

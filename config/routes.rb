@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-  get 'demo/create_expense_result' => 'demo#generate_create_expense_result'
-  get 'demo/get_expenses_result' => 'demo#generate_get_all_expenses'
-  get 'demo/expense_date_range' => 'demo#generate_expense_date_range'
-  get 'demo/expense_start_date' => 'demo#generate_expense_start_date'
-  get 'demo/expense_end_date' => 'demo#generate_expense_end_date'
-  get 'demo/expense_no_date' => 'demo#generate_expense_no_date'
-  # You can have the root of your site routed with "root"
-   root 'demo#index'
+
+  root 'expenses#home'
+  get 'expenses/home' => 'expenses#home'
+  get 'expenses/retrieve' => 'expenses#retrieve', as: 'retrieve_expense'
+  post 'expenses/expenseriser' => 'expenses#expenseriser', as: 'expenseriser'
+  resources :expenses  
+ 
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
