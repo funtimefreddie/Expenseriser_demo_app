@@ -3,42 +3,46 @@
 Expenseriser is an API that allows you to submit and recall details of expenses, costs, revenues, and other financial metrics.  
 Though really, it's a simple app built to demonstrate the ability to create APIs, access tokens, and getting two apps to communicate with each other
 
+This is a demo app, which has some example methods / actions that show how to communicate with the expenseriser API.
 
 == SIGN UP
 
 To use expenseriser, you need an API token.  This is a 30 digit code or password, obtained by registering with us at
 https://guarded-caverns-1459.herokuapp.com/users/sign_in
 
+== HOW TO USE EXPENSERISER FROM YOUR APP
 
-===SUBMIT EXPENSES via http request
-To create expense you will need to submit a request to the url listed below, along with headers for name, token (as per expenseriser login details), expense amount and date
-  url       : https://guarded-caverns-1459.herokuapp.com/api/v1/expenses
-  method    : post 
-  header    : name
-              token             
-  parameter : amount (decimal)
-              date (yyyy-mm-dd)
-  category  : category_name
+  ===SUBMIT EXPENSES via http request
+  To create expense you will need to submit a request to the url listed below, along with headers for name, token (as per expenseriser login details), expense amount and date
+    url       : https://guarded-caverns-1459.herokuapp.com/api/v1/expenses
+    method    : post 
+    header    : name
+                token             
+    parameter : amount (decimal)
+                date (yyyy-mm-dd)
+    category  : category_name
 
-  example url : https://guarded-caverns-1459.herokuapp.com/api/v1/expenses.json?date=2015-02-15&amount=100&category=my_category
-
-
-===RETRIEVE expenses
-Use the following request to retrieve all expenses
-  url       : https://guarded-caverns-1459.herokuapp.com/api/v1/expenses 
-  method    : get 
-  header    : name <your_business_name>
-              token <your_API_key>
-  parameters: start_date, end_date (both optional)
-
-  example url: https://guarded-caverns-1459.herokuapp.com/api/v1/expenses?start_date=2015-02-01&end_date=2015-02-15
+    example url : https://guarded-caverns-1459.herokuapp.com/api/v1/expenses.json?date=2015-02-15&amount=100&category=my_category
 
 
-== DEMO APP
+  ===RETRIEVE expenses
+  Use the following request to retrieve all expenses
+    url       : https://guarded-caverns-1459.herokuapp.com/api/v1/expenses 
+    method    : get 
+    header    : name <your_business_name>
+                token <your_API_key>
+    parameters: start_date, end_date (both optional)
 
-These requests are demonstrated within this app, as an example to show how you can connect to Expenseriser and make requests in your own app.  The two basic requests are demo'd as follows
+    example url: https://guarded-caverns-1459.herokuapp.com/api/v1/expenses?start_date=2015-02-01&end_date=2015-02-15
 
-submit expenses: Expenses to submit are inputted in the Expenses/New view.  The Expenses#create action then sends a request to expenseriser via the submit method in the Expense model
-retrieve expenses: Expenses to view are inputted in the Expenses/Retrieve view.  The Expenses#expenseriser then sends a request to expenseriser via the retrieve method in the Expense model.  The retrieved data is displayed in the Expenses/expenseriser view.
 
-Open the app on the server, and the root will direct you to the relevant view pages described above.  
+  == DEMO APP
+  These requests are demonstrated within this app, as an example to show how you can connect to Expenseriser and make requests in your own app.
+  Example user and token are stored as environmental variables in the application.yml file (created by figaro). To use in your own app or to connect to your own account, you will need to replace these with your own details.
+  
+  The two basic requests are demo'd as follows:
+
+  submit expenses: Expenses to submit are inputted in the Expenses/New view.  The Expenses#create action then sends a request to expenseriser via the submit method in the Expense model
+  retrieve expenses: Expenses to view are inputted in the Expenses/Retrieve view.  The Expenses#expenseriser then sends a request to expenseriser via the retrieve method in the Expense model.  The retrieved data is displayed in the Expenses/expenseriser view.
+
+  Open the app on the server, and the root will direct you to the relevant view pages described above.  
